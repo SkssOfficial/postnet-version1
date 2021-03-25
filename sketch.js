@@ -14,7 +14,7 @@ let poses = [];
 let stage = 0;
 let stageResult = [0, 0]
 let poseOffset = 10
-let confidenceOffset = 0.1
+let confidenceOffset = 0.5
 let stopCounting = false
 
 let currentFrame = 0
@@ -30,7 +30,7 @@ let radio = 640 / 480
 let waitTime = 5;
 let waitTimeFuncVar;
 
-let nextStageTime = 30;
+let nextStageTime = 1000;
 let nextStageTimeVar;
 
 
@@ -179,9 +179,7 @@ function countMovement() {
                 if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset) {
                     break;
                 }
-                
-               
-                
+              
                 if (rightKnee.y > leftKnee.y + poseOffset) {
                     stageResult[0] += 1
                 } else if (leftKnee.y > rightKnee.y + poseOffset) {
@@ -192,8 +190,6 @@ function countMovement() {
                     break;
                 }
                 
-               
-                
                 if (rightKnee.y > leftKnee.y + poseOffset) {
                     stageResult[0] += 1
                 } else if (leftKnee.y > rightKnee.y + poseOffset) {
@@ -202,7 +198,7 @@ function countMovement() {
                                 
                 break;
             case '2':
-                if (leftKnee.y > leftElbow.y + poseOffset + 5 && leftKnee.y > rightKnee.y + poseOffset && leftKnee.confidence > confidenceOffset && leftElbow.confidence > confidenceOffset) {
+                   if (leftKnee.y > leftElbow.y + poseOffset + 5 && leftKnee.y > rightKnee.y + poseOffset && leftKnee.confidence > confidenceOffset && leftElbow.confidence > confidenceOffset) {
                     stageResult[0] += 1
                 } else if (rightKnee.y > rightElbow.y + poseOffset + 5 && rightKnee.y > leftKnee.y + poseOffset && rightKnee.confidence > confidenceOffset && rightElbow.confidence > confidenceOffset) {
                     stageResult[1] += 1
