@@ -176,7 +176,7 @@ function countMovement() {
 
         switch (String(stage)) {
             case '0':
-                if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset) {
+                if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset && rightHip.y - rightKnee.y > 20 || leftHip.y - leftKnee.y > 20) {
                     break;
                 }
               
@@ -186,11 +186,11 @@ function countMovement() {
                     stageResult[1] += 1
                 }
             case '1':
-                if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset) {
+                if (leftKnee.y > rightKnee.y + poseOffset || rightElbow.y + poseOffset> rightWrist.y && leftElbow.y + poseOffset> leftWrist.y) {
                     break;
                 }
                 
-                if (rightKnee.y > leftKnee.y + poseOffset) {
+                if (rightKnee.y > leftKnee.y + poseOffset || rightElbow.y + poseOffset> rightWrist.y && leftElbow.y + poseOffset> leftWrist.y) {
                     stageResult[0] += 1
                 } else if (leftKnee.y > rightKnee.y + poseOffset) {
                     stageResult[1] += 1
