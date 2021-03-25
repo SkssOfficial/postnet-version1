@@ -173,6 +173,8 @@ function countMovement() {
         let leftElbow = pose.leftElbow;
         let rightWrist = pose.rightWrist;
         let rightElbow = pose.rightElbow;
+        let leftHip = pose.leftHip
+        let rightHip = pose.rightHip
 
         switch (String(stage)) {
             case '0':
